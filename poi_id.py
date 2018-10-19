@@ -1,25 +1,12 @@
 
 # coding: utf-8
 
-# In[87]:
-
-
-import os
-os.chdir("C://Users//lorenz.hering//Desktop//BE//02_Schulungen//Data Analyst Nanodegree//06 Intro to Machine Learning//ud120-projects-master//final_project")
-os.getcwd()
-
-
-# In[88]:
-
-
-os.listdir()
-
 
 # The enron dataset contains email (emails written) and financial data (salary, bonus etc.) from enron employees. 
 # 
 # The goal of this project is to find out what features identify a person of interest (POI). For this purpose we can apply machine learning to train a model on a dataset with these features. Based on these features the algorithmn can tell us if a specific person is a POI or not.
 
-# In[173]:
+
 
 
 #!/usr/bin/python
@@ -47,7 +34,6 @@ with open("final_project_dataset.pkl", "rb") as data_file:
     data_dict = pickle.load(data_file)
 
 
-# In[169]:
 
 
 ### get to know the data
@@ -57,7 +43,6 @@ print (data_dict['BUY RICHARD B'])
 
 # Now that we got a feel for the dataset, lets visualize the data and check for outliers, especially when plotting salary and bonus.
 
-# In[174]:
 
 
 features = ["salary", "bonus"]
@@ -72,8 +57,8 @@ plt.xlabel("salary")
 plt.ylabel("bonus")
 plt.show()
 
-We clearly see an outlier, which seems to be the "total".
-# In[175]:
+# We clearly see an outlier, which seems to be the "total".
+
 
 
 ### remove outliers before proceeding further
@@ -115,7 +100,6 @@ pprint(sorted(outliers,key=lambda x:x[1],reverse=True)[:2])
 
 # We already have the features bonus and salary. It is quite possible that POI have relatively high bonus and salary numbers. However, lets create some new features. POIs possible wrote a lot of emails back and forth. Therefore, we define the features fraction_to_poi_email and fraction_from_poi_email.
 
-# In[176]:
 
 
 ### create new features
@@ -150,7 +134,6 @@ my_dataset = data_dict
 data = featureFormat(my_dataset, features_list)
 
 
-# In[177]:
 
 
 ### plot new features
@@ -164,7 +147,6 @@ plt.xlabel("fraction of emails this person gets from poi")
 plt.show()
 
 
-# In[178]:
 
 
 ### Extract features and labels from dataset for local testing
@@ -178,7 +160,6 @@ labels, features = targetFeatureSplit(data)
 # 
 # Now that we have split the data, can can apply an algorithmn. I first applied the decision tree classifier. Decision trees ask multiple linear questions, one after another. The goal is to create a model that predicts the value of a target variable by learning simple decision rules inferred from the data features.
 
-# In[204]:
 
 
 ### ML goes here!
@@ -212,8 +193,6 @@ print (score)
 print (round(time()-t0, 3), "s")
 
 
-# In[202]:
-
 
 importances = clf.feature_importances_
 import numpy as np
@@ -227,8 +206,6 @@ for i in range(5):
 # I ranked the feature importance. Bonus seems to be the feature of highest importance when identifying POIs (followed by salary). However, our self-build features also seem to have an influence.
 # 
 # After that I tried a naive bayes classifier. This algorithmn did not perform as good as the decision tree (slower). Therefore, I commented it out.
-
-# In[207]:
 
 
 ### try Naive Bayes for prediction
@@ -246,8 +223,6 @@ for i in range(5):
 ### NB algorithm time
 #print (round(time()-t0, 3), "s")
 
-
-# In[208]:
 
 
 ### use manual tuning parameter min_samples_split
@@ -290,7 +265,6 @@ print ('recall = ', recall_score(labels_test,pred))
 # 
 # With a precision of 0.5 and a recall of 0.4 my classifier beats the .3 both times. yay!
 
-# In[159]:
 
 
 ### dump your classifier, dataset and features_list so
