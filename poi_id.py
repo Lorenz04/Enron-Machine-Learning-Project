@@ -1,25 +1,10 @@
 
 # coding: utf-8
 
-# In[81]:
-
-
-import os
-os.chdir("C://Users//lorenz.hering//Desktop//BE//02_Schulungen//Data Analyst Nanodegree//06 Intro to Machine Learning//ud120-projects-master//final_project")
-os.getcwd()
-
-
-# In[82]:
-
-
-os.listdir()
-
 
 # The enron dataset contains email (emails written) and financial data (salary, bonus etc.) from enron employees. 
 # 
 # The goal of this project is to find out what features identify a person of interest (POI). For this purpose we can apply machine learning to train a model on a dataset with these features. Based on these features the algorithmn can tell us if a specific person is a POI or not.
-
-# In[100]:
 
 
 #!/usr/bin/python
